@@ -28,3 +28,7 @@ kadira:flow-router
 kadira:react-layout
 fourseven:scss
 reywood:bootstrap3-sass
+twbs:bootstrap
+cfs:standard-packages
+cfs:gridfs
+accounts-password

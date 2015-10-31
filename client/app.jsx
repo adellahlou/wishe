@@ -1,3 +1,4 @@
 Meteor.startup(()=> {
-  CardSubs = new SubsManager;
+  // CardSubs = new SubsManager();
+
 });

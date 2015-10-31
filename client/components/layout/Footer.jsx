@@ -1,17 +1,11 @@
-Footer = React.createClass(){
-	propTypes : {},
-
-	mixins : [ReactMeteorData],
-
-	getInitialState(){
-
-	},
-
-	getMeteorData(){
-
-	},
-
+Footer = React.createClass({
 	render(){
-		return (<div> </div>)
+		return (
+			<footer className="footer">
+		      <div className="container">
+		        <p className="text-muted">WishE - Made by Adel Lahlou</p>
+		      </div>
+		    </footer>
+		);
 	}
-}
+});
