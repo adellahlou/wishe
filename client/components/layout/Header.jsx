@@ -41,12 +41,11 @@ Header = React.createClass({
 		        </div>
 		        <div id="navbar" className="navbar-collapse collapse">
 		          <ul className="nav navbar-nav">
-		            <li className="active"><a href="#">Home</a></li>
+		            <li className="active"><a href="/">Home</a></li>
 		            <li><a href='/crowdsearch'>Crowd Search</a></li>
 		            <li><a href="/cards">Cards</a></li>
-		            <li><a href="#contact">Contact</a></li>
 		            <li className="dropdown">
-		              <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Learn More <span className="caret"></span></a>
+		              <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Learn More {/*<span className="caret"></span>*/}</a>
 		              <ul className="dropdown-menu">
 		                <li><a href="#">Motivation</a></li>
 		                <li><a href="#">Approaches</a></li>
@@ -55,8 +54,8 @@ Header = React.createClass({
 		            </li>
 		          </ul>
 		          <ul className="nav navbar-nav navbar-right">
-		            <li><a href="../navbar/">About</a></li>
-		            <li><a href="../navbar-static-top/">The Team</a></li>
+		            <li><a href="/about">About</a></li>
+		            <li><a href="/team">The Team</a></li>
 		            {rightBar}
 
 		          </ul>

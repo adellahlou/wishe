@@ -15,13 +15,9 @@ Home = React.createClass({
 	
 
 	render(){
-		let style = {
-			paddingTop : 60
-		};
-
 		let latestListID = this.props.latestListID;
 
-		return (<div className="home" style={style}>
+		return (<div className="home">
 			<div className="jumbotron">
 				<div className="container-fluid">
 					{/*<CardTileList resourceId={lastestListID} source="cardsList"/>*/}
@@ -30,4 +26,4 @@ Home = React.createClass({
 			<p> This is a test of updating </p>
 		</div>);
 	}
-});
+});  

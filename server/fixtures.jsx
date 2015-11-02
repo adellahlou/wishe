@@ -1,36 +1,69 @@
-Factory.define('search', Searches, {
-	owner : ()=>{
-		return Owner;
-	},
+Meteor.startup(function(){
+	if(Meteor.users.find().count() < 2){
+		console.log("No users")
+		Accounts.createUser({username : "the owner", password: "tester123"});
+		
+		_(8).times((n)=>{
+			let username = Fake.user({fields : ['username']}).username;
 
-	title : ()=>{
-		return Fake.sentence();	
-	},
+			Accounts.createUser({
+				username : username,
+				password: "tester123"
+			});
+		});
+	}
 
-	tags : ()=>{
-		var ret = [];
-		var numTags = Math.floor(10*Math.random());
-		for(var i =0; i < numTags; i++)
-			ret.push(Fake.word());
+	Factory.define('search', Searches, {
+		owner : ()=>{
+			return Owner;
+		},
 
-		return ret;
-	},
+		title : ()=>{
+			return Fake.sentence();	
+		},
 
-	description : ()=>{
-		let parLength = Math.floor(100*Math.random());
-		return Fake.paragraph(parLength);
-	},
+		tags : ()=>{
+			var ret = [];
+			var numTags = Math.floor(10*Math.random());
+			for(var i =0; i < numTags; i++)
+				ret.push(Fake.word());
 
-	contributions : ()=>{
-		var ret = [];
-		var numContributions = Math.floor(10*Math.random());
+			return ret;
+		},
 
-		// for(var i =0; i < numContributions; i++)
-		// 	ret.push(Fake.word());
+		description : ()=>{
+			let parLength = Math.floor(4*Math.random());
+			return Fake.paragraph(parLength);
+		},
 
-		return ret;
+		priority : ()=>{
+			return Math.floor(1000*Math.random());
+		},
+
+		contributions : ()=>{
+			var ret = [];
+			var numContributions = Math.floor(10*Math.random());
+
+			// for(var i =0; i < numContributions; i++)
+			// 	ret.push(Fake.word());
+
+			return ret;
+		}
+	});
+
+
+	if(Cards.find().count() === 0){
+		console.log("No cards");
+	}
+
+	if(Searches.find().count() === 0){
+		console.log("No Searches")
+		_(10).times((n)=>{
+			Factory.create('search');
+		})
 	}
 });
+
 
 // Factory.define('contribution)
 
@@ -72,28 +105,3 @@ Factory.define('search', Searches, {
 // 	}
 // });
 
-Meteor.startup(function(){
-	if(Meteor.users.find().count() < 2){
-		console.log("No users")
-		// Accounts.createUser({username : "the owner", password: "tester123"});
-		_(8).times((n)=>{
-			let username = Fake.user({fields : ['username']}).username;
-
-			Accounts.createUser({
-				username : username,
-				password: "tester123"
-			});
-		});
-	}
-
-	if(Cards.find().count() === 0){
-		console.log("No cards");
-	}
-
-	if(Searches.find().count() === 0){
-		console.log("No Searches")
-		_(10).times((n)=>{
-			Factory.create('search');
-		})
-	}
-});

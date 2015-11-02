@@ -12,7 +12,7 @@ searchSection.route('/',{
 });
 
 
-searchSection.route('/:searchid', {
+searchSection.route('/:searchId', {
 	name: "Search Instance",
 	action(params, queryParams){
 		RenderMainLayout(<SearchProfile {...params}/>);
