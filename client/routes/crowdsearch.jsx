@@ -7,7 +7,7 @@ var searchSection = FlowRouter.group({
 searchSection.route('/',{
 	name: "CrowdSearch Home",
 	action(params, queryParams){
-
+		RenderMainLayout(<SearchHome {...params}/>);
 	}
 });
 
@@ -15,6 +15,6 @@ searchSection.route('/',{
 searchSection.route('/:searchid', {
 	name: "Search Instance",
 	action(params, queryParams){
-		
+		RenderMainLayout(<SearchProfile {...params}/>);
 	}
 })

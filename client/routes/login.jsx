@@ -25,13 +25,3 @@ FlowRouter.route('/signup',{
 		renderMainLayout(<UserSignup />);
 	}
 });
-
-
-
-function renderMainLayout(component){
-	ReactLayout.render(MainLayout, {
-		header: <Header />,
-		content: component,
-		footer: <Footer />
-	});
-}
