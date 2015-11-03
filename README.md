@@ -1,7 +1,7 @@
 # WishE
 Crowdsourced greeting card searching and art
 
-Hacked together for some user testing. Has lots of TODO's :
+Hacked together FAST for some user testing. Has these TODO's :
 - Need to switch to MongoDB DBrefs. Currently lots of duplicated data. 
 - Need to Normalize schemas.
 - Need to get GridFS up for image storage
