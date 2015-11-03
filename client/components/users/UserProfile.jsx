@@ -7,26 +7,23 @@ UserProfile = React.createClass({
 
 	getMeteorData(){
 		var data = {};
-		var handle = Meteor.subscribe('user-profile', Meteor.userId());
 
-		if(handle.ready()){
-			data.profile = {};
-		}
-
+		data.user = Meteor.users.findOne(this.props.userId);
+		data.searches = Searches.find({ 'owner._id' : this.props.userId}).fetch();
 		return data;
 	},
 
 	getProfileContent(){
-		let user = this.data.currentUser;
-
+		let user = this.data.user;
+		console.log(this.data.searches);
 		return (
-			<div className="col-lg-6 col-sm-6">
+			<div className="col-lg-8 col-sm-6 col-lg-offset-2">
 			    <div className="blocky hoverblocky">
 			        <div className="blocky-background">
 			            <img className="blocky-bkimg" alt="" src="http://lorempixel.com/100/100/people/9/" />
 			        </div>
 			        <div className="useravatar">
-			            <img alt="" src="http://lorempixel.com/100/100/people/9/" />
+			            <img alt="" src="http://lorempixel.com/100/100/people/" />
 			        </div>
 			        <div className="blocky-info"> 
 			        	<span className="blocky-title">{user.username}</span>
@@ -59,6 +56,7 @@ UserProfile = React.createClass({
 			        </div>
 			        <div className="tab-pane fade in" id="searchesTab">
 			          <h3>Searches</h3>
+			          <SearchTileList searches={this.data.searches} />
 			        </div>
 			        <div className="tab-pane fade in" id="contributionsTab">
 			          <h3>Contributions</h3>
@@ -72,9 +70,14 @@ UserProfile = React.createClass({
 
 
 	render(){
-		
-         return(
-         	this.data.profile ? getProfileContent() : (<LoadingSpinner> Loading Profile</LoadingSpinner>)
-		);
+		let content = this.data.user ? this.getProfileContent() : (<LoadingSpinner> Loading Profile</LoadingSpinner>);
+
+        return (
+        	<div className="container">
+        		<div className="row">
+        			{content}
+        		</div>
+        	</div>
+        );
 	},
 })

@@ -1,26 +1,48 @@
+Meteor.publish('searches-page', function(page, size){
+	page = page || 1;
+	size = size || 40;
+	let skip = (page - 1) * size
+
+	return Searches.find({}, {
+		limit : size,
+		skip : skip
+	});
+});
+
 Meteor.publish('cardsList', function(cardsListId){
+	if(!cardsListId)
+		throw new Error();
+
 	return CardLists.find({ _id : cardsListId});
 });
 
-Meteor.publish('searches', function(searchId){
-	let query = searchId ? {_id : searchId} : {};
-	return Searches.find(query);
+Meteor.publish('searches-single', function(searchId){
+	if(!searchId)
+		throw new Error();
+
+	return Searches.findOne({_id : searchId});
 });
 
 
-Meteor.publish('userProfile', function(userid){
+Meteor.publish('userProfile', function(userId){
+	if(!userId)
+		throw new Error();
+
 	return [];
 });
 
-Meteor.publish('card', (cardId)=>{
-	return Cards.find({_id : cardId});
-})
+Meteor.publish('card', function(cardId){
+	if(!searchId)
+		throw new Error();
 
-Meteor.publish('featured-crowdsearch', ()=>{
-	return Searches.find().sort({'owner.priority' : -1});
+	return Cards.find({_id : cardId});
 });
 
-Meteor.publish('room', function(roomId, roomTitle){
+Meteor.publish('featured-crowdsearch', function(){
+	return Searches.find({}, {sort : {priority : -1}, limit: 1});
+});
+
+Meteor.publish('rooms', function(roomId, roomTitle){
 	if (roomId)
 		return Rooms.find({roomId : roomdId});
 	else

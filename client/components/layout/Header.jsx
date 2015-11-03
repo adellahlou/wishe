@@ -19,8 +19,8 @@ Header = React.createClass({
 			let userLink = GenRoute.user(this.data.currentUser._id);
 
 			rightBar = [
-				(<li key="1"><a href={userLink}>My Profile</a> </li>),
-				(<li key="2"><a href="/" onClick={this.handleLogout}>Signout</a> </li>)];
+				(<li className="" key="1"><a href={userLink}>My Profile</a> </li>),
+				(<li className="" key="2"><a href="/" onClick={this.handleLogout}>Signout</a> </li>)];
 		} else {
 			rightBar = (<UserLogin />)/*[
 				(<li key="1"><a href="/login">Login</a> </li>),
@@ -41,23 +41,13 @@ Header = React.createClass({
 		        </div>
 		        <div id="navbar" className="navbar-collapse collapse">
 		          <ul className="nav navbar-nav">
-		            <li className="active"><a href="/">Home</a></li>
-		            <li><a href='/crowdsearch'>Crowd Search</a></li>
-		            <li><a href="/cards">Cards</a></li>
-		            <li className="dropdown">
-		              <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Learn More {/*<span className="caret"></span>*/}</a>
-		              <ul className="dropdown-menu">
-		                <li><a href="#">Motivation</a></li>
-		                <li><a href="#">Approaches</a></li>
-		                <li><a href="#">Deliverables</a></li>
-		              </ul>
-		            </li>
+		            <li className=""><a href="/">Home</a></li>
+		            <li className=""><a href='/crowdsearch'>Crowd Search</a></li>
+		            <li className=""><a href="/cards">Cards</a></li>
 		          </ul>
 		          <ul className="nav navbar-nav navbar-right">
-		            <li><a href="/about">About</a></li>
-		            <li><a href="/team">The Team</a></li>
+		            <li className=""><a href="/about">About</a></li>
 		            {rightBar}
-
 		          </ul>
 		        </div>
 		      </div>

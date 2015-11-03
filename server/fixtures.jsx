@@ -15,7 +15,7 @@ Meteor.startup(function(){
 
 	Factory.define('search', Searches, {
 		owner : ()=>{
-			return Owner;
+			return Meteor.users.findOne({username: "the owner"});
 		},
 
 		title : ()=>{
@@ -63,7 +63,7 @@ Meteor.startup(function(){
 		})
 	}
 });
-
+ 
 
 // Factory.define('contribution)
 

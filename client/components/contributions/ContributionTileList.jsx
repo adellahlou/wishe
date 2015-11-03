@@ -29,7 +29,7 @@ ContributionTileList = React.createClass({
 	},
 
 	getList(){
-
+		//TODO: Implement Contributions and relational data
 		return this.props.contributions.map(function(contribution) {
 				return (
 					<ContributionTile key={Math.floor(1000*Math.random())} contribution={contribution} />

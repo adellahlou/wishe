@@ -8,10 +8,6 @@ SearchProfile = React.createClass({
 	getMeteorData(){
 		var data = {};
 		var handle = Meteor.subscribe('searches', this.props.searchId);
-		// if(handle.ready()){
-		// 	console.log("Handle is ready");
-		// 	data.search = Searches.findOne({_id : this.props.searchId});
-		// }
 
 		data.search = Searches.find({_id : this.props.searchId}).fetch()[0];
 		return data;
@@ -33,6 +29,28 @@ SearchProfile = React.createClass({
 				createdAt : Date.now()
 			}
 
+
+			Searches.update(this.props.searchId, { $push : {contributions : newContribution}});
+		}
+	},
+
+	handleFileContribution(e){
+		console.log(this.data.search);
+		let user = Meteor.user();
+
+		if(!user){
+			alert("You need to sign in to contribute");
+		} else{
+			let width = 200 + Math.floor(20 * Math.random()),
+				height = 400 + Math.floor(30 * Math.random());
+			let newContribution = {
+				recipient : this.data.search,
+				user : user,
+				recipientType : "search",
+				contributionType: "image",
+				content: "http://lorempixel.com/"+ height + "/" + width,
+				createdAt : Date.now()
+			}
 
 			Searches.update(this.props.searchId, { $push : {contributions : newContribution}});
 		}
@@ -60,7 +78,7 @@ SearchProfile = React.createClass({
 				      	<input type="text" className="form-control" ref="contribution" placeholder="Make a contribution..." onFocus={this.handleFocus}/>
 				      	<span className="input-group-btn">
 					    	<button className="btn btn-primary" type="button" onClick={this.handleContribution}>Contribute</button>
-					    	<button className="btn btn-primary" type="button" onClick={this.handleContribution}>Upload</button>
+					    	<button className="btn btn-primary" type="button" onClick={this.handleFileContribution}>Upload</button>
 				     	</span>
 				    </div>
 				</div>

@@ -1,7 +1,6 @@
 CardTileList = React.createClass({
 	propTypes : {
-		source : React.PropTypes.oneOf(['cardsList', 'userCards']).isRequired,
-		resourceId : React.PropTypes.string
+		cardListId : React.PropTypes.string
 	},
 
 	mixins : [ReactMeteorData],
@@ -9,10 +8,7 @@ CardTileList = React.createClass({
 
 	getMeteorData(data){
 		var data = {};
-		let subscriptionMethod = this.props.source === 'cardsList' ?
-			'singleCardList' :
-			'userCardList';
-		var handle = Meteor.subscribe(subscriptionMethod, this.props.resourceId);
+		var handle = Meteor.subscribe('cardsList', this.props.cardListId);
 
 		if (handle.ready()){
 			data.cards = Cards.find({});
@@ -21,19 +17,25 @@ CardTileList = React.createClass({
 		return data;
 	},
 
-	render(){
-		let display = !this.data.cards ? 
-			(<div class="alert alert-danger" role="alert"> 
-				<span class="glyphicon glyphicon-alert"></span>
-					Cards List could not be display :(
-			</div>) : 
-			this.data.cards.map(function(card){
+	getErrorMessage(){
+		return (
+			<div className="alert alert-danger" role="alert"> 
+				<span className="glyphicon glyphicon-alert"></span>
+					&nbsp;Card List could not be displayed :(
+			</div>
+		);
+	},
+
+	getList(){
+		return this.data.cards.map(function(card) {
 				return (
-					<CardTile card={card} />
+					<CardTile key={card._id} search={card} />
 				);
 			});
+	},
 
-
+	render(){
+		let display = this.data.cards ? this.getList() : this.getErrorMessage()
 
 		return (
 			<div className="list tile-list list-card"> 
