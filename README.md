@@ -1,5 +1,5 @@
 # WishE
-Crowdsourced greeting cards
+Crowdsourced greeting card searching and art
 
 Hacked together for some user testing. Has lots of TODO's :
 - Need to change to SQL (lots of relational data)
